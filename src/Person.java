@@ -1,7 +1,9 @@
+import javax.swing.plaf.PanelUI;
+
 public class Person {
-    int birthAge;
+    private int birthAge;
     String name;
-    String city;
+    private String city;
     String job;
 
     Person(int birthAge, String name, String city, String job) {
@@ -17,6 +19,34 @@ public class Person {
 
     Person() {
         this(0, null, null, null);
+    }
+
+    public void setBirthAge(int birthAge) {
+        if (birthAge != 0 && birthAge > 1900) {
+            this.birthAge = birthAge;
+        } else {
+            this.birthAge = 0;
+        }
+    }
+
+    public void setCity(String city) {
+        if (city != null && city != "" && city.isBlank()) {
+            this.city = city;
+        } else {
+            System.out.println("Информация не указана");
+        }
+    }
+
+    public int getBirthAge() {
+        return this.birthAge;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     void meeting() {
