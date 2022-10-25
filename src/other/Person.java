@@ -1,3 +1,5 @@
+package other;
+
 import javax.swing.plaf.PanelUI;
 
 public class Person {
@@ -6,7 +8,7 @@ public class Person {
     private String city;
     String job;
 
-    Person(int birthAge, String name, String city, String job) {
+    public Person(int birthAge, String name, String city, String job) {
         if (birthAge >= 0) {
             this.birthAge = birthAge;
         } else {

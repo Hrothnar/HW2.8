@@ -1,3 +1,5 @@
+package other;
+
 public class Bouquet {
     Flower[] flowers = new Flower[1000];
 

@@ -2,19 +2,12 @@ package transport;
 
 import java.time.LocalDate;
 
-public class Car {
+public class Car extends Transport {
 
     public class Key {
         private String remoteEngineStart;
         private String keylessEntry;
 
-        @Override
-        public String toString() {
-            return "Key{" +
-                    "remoteEngineStart='" + remoteEngineStart + '\'' +
-                    ", keylessEntry='" + keylessEntry + '\'' +
-                    '}';
-        }
 
         public Key(String remoteEngineStart, String keylessEntry) {
             if (remoteEngineStart != null && !remoteEngineStart.isBlank()) {
@@ -73,15 +66,6 @@ public class Car {
             }
         }
 
-        @Override
-        public String toString() {
-            return "Insurance{" +
-                    "timeLimit=" + timeLimit +
-                    ", cost=" + cost +
-                    ", number='" + number + '\'' +
-                    '}';
-        }
-
         public Insurance(int timeLimit, int cost, String number) {
             if (timeLimit > 0) {
                 this.timeLimit = timeLimit;
@@ -98,54 +82,22 @@ public class Car {
             } else {
                 this.number = "000000000";
             }
-
-
-
         }
     }
 
-    private String brand;
-    private String model;
     private double engineVolume;
-    private String color;
-    private int productionYear;
-    private String productionCountry;
     private int transmission;
     private String bodyType;
     private String regNumber;
     private int sites;
-    private String wheels;
+    private String tires;
 
-    public Car(String brand, String model, double engineVolume, String color, int productionYear, String productionCountry, int transmission, String bodyType, String regNumber, int sites, String wheels) {
-        if (brand != null && !brand.isBlank()) {
-            this.brand = brand;
-        } else {
-            this.brand = "default";
-        }
-        if (model != null && !model.isBlank()) {
-            this.model = model;
-        } else {
-            this.model = "default";
-        }
+    public Car(String brand, String model, int productionYear, String productionCountry, String color, int maxSpeed, int transmission, String bodyType, String regNumber, int sites, String tires) {
+        super(brand, model, productionYear, productionCountry, color, maxSpeed);
         if (engineVolume > 0) {
             this.engineVolume = engineVolume;
         } else {
             this.engineVolume = 1.5;
-        }
-        if (color != null && !color.isBlank()) {
-            this.color = color;
-        } else {
-            this.color = "default";
-        }
-        if (productionYear > 1900) {
-            this.productionYear = productionYear;
-        } else {
-            this.productionYear = LocalDate.now().getYear();
-        }
-        if (productionCountry != null && !productionCountry.isBlank()) {
-            this.productionCountry = productionCountry;
-        } else {
-            this.productionCountry = "default";
         }
         if (transmission > 0) {
             this.transmission = transmission;
@@ -167,103 +119,25 @@ public class Car {
         } else {
             this.sites = 4;
         }
-        if (wheels.toLowerCase().equals("зима") || wheels.toLowerCase().equals("лето")) {
-            this.wheels = wheels;
+        if (tires.toLowerCase().equals("зима") || tires.toLowerCase().equals("лето")) {
+            this.tires = tires;
         } else {
-            this.bodyType = "лето";
+            this.tires = "лето";
         }
     }
 
-    Car() {
-        this("default", "default", 1.5, "default", LocalDate.now().getYear(), "default", 5, "default", "x000xx000", 4, "Лето");
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public int getProductionYear() {
-        return productionYear;
-    }
-
-    public String getProductionCountry() {
-        return productionCountry;
-    }
-
-    public String getBodyType() {
-        return bodyType;
-    }
-
-    public int getSites() {
-        return sites;
-    }
-
-    public double getEngineVolume() {
-        return engineVolume;
-    }
-
-    public void setEngineVolume(double engineVolume) {
-        this.engineVolume = engineVolume;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public int getTransmission() {
-        return transmission;
-    }
-
-    public void setTransmission(int transmission) {
-        this.transmission = transmission;
-    }
-
-    public String getRegNumber() {
-        return regNumber;
-    }
-
-    public void setRegNumber(String regNumber) {
-        this.regNumber = regNumber;
-    }
-
-    public String getWheels() {
-        return wheels;
-    }
-
-    public void setWheels(String wheels) {
-        this.wheels = wheels;
-    }
-
-    void carList() {
+    @Override
+    public void showInfo() {
         System.out.println(this.brand + "   " + this.model + "   " + this.engineVolume + "   " + this.color + "   " + this.productionYear + "   " + this.productionCountry);
     }
 
     @Override
-    public String toString() {
-        return "Car{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume +
-                ", color='" + color + '\'' +
-                ", productionYear=" + productionYear +
-                ", productionCountry='" + productionCountry + '\'' +
-                ", transmission=" + transmission +
-                ", bodyType='" + bodyType + '\'' +
-                ", regNumber='" + regNumber + '\'' +
-                ", sites=" + sites +
-                ", wheels='" + wheels + '\'' +
-                '}';
+    public void refill() {
+        System.out.println("Бензин, Дизель, Эелектричество");
+
     }
 
-    public void changeWheels() {
+    public void installSeasonalTires() {
         switch (LocalDate.now().getMonthValue()) {
             case 4:
             case 5:
@@ -272,14 +146,14 @@ public class Car {
             case 8:
             case 9:
             case 10:
-                this.wheels = "Лето";
+                this.tires = "Лето";
                 break;
             case 11:
             case 12:
             case 1:
             case 2:
             case 3:
-                this.wheels = "Зима";
+                this.tires = "Зима";
                 break;
         }
     }
