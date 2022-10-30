@@ -1,77 +1,54 @@
 package transport;
 
-import java.time.LocalDate;
-
 public abstract class Transport {
 
-    String brand;
-    String model;
-    int productionYear;
-    String productionCountry;
-    String color;
-    int maxSpeed;
+    private String brand;
+    private String model;
+    private double engineVolume;
 
-
-    public String getColor() {
-        return color;
+    {
+        this.brand = "default";
+        this.model = "default";
+        this.engineVolume = 1;
     }
 
-    public void setColor(String color) {
-        if (color != null && !color.isBlank()) {
-            this.color = color;
-        } else {
-            this.color = "default";
-        }
+    protected Transport(String brand, String model, double engineVolume) {
+        setBrand(brand);
+        setModel(model);
+        setEngineVolume(engineVolume);
     }
 
-    public int getMaxSpeed() {
-        return maxSpeed;
+    public final String getBrand() {
+        return brand;
     }
 
-    public void setMaxSpeed(int maxSpeed) {
-        if (maxSpeed > 0) {
-            this.maxSpeed = maxSpeed;
-        } else {
-            this.maxSpeed = 100;
-        }
-    }
-
-    public Transport(String brand, String model, int productionYear, String productionCountry, String color, int maxSpeed) {
-        if (brand != null && !brand.isBlank()) {
+    public void setBrand(String brand) {
+        if (brand != null && !brand.isBlank())
             this.brand = brand;
-        } else {
-            this.brand = "default";
-        }
-        if (model != null && !model.isBlank()) {
+    }
+
+    public final String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        if (model != null && !model.isBlank())
             this.model = model;
-        } else {
-            this.model = "default";
-        }
-        if (productionYear > 1900) {
-            this.productionYear = productionYear;
-        } else {
-            this.productionYear = LocalDate.now().getYear();
-        }
-        if (productionCountry != null && !productionCountry.isBlank()) {
-            this.productionCountry = productionCountry;
-        } else {
-            this.productionCountry = "default";
-        }
-        if (color != null && !color.isBlank()) {
-            this.color = color;
-        } else {
-            this.color = "default";
-        }
-        if (maxSpeed > 0) {
-            this.maxSpeed = maxSpeed;
-        } else {
-            this.maxSpeed = 100;
-        }
     }
 
-    public void showInfo() {
-
+    public final double getEngineVolume() {
+        return engineVolume;
     }
-    public abstract void refill();
+
+    public void setEngineVolume(double engineVolume) {
+        if (engineVolume > 0)
+            this.engineVolume = engineVolume;
+    }
+
+    public abstract void move();
+
+    public abstract void stop();
 
 }
+
+
