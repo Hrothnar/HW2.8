@@ -1,8 +1,13 @@
 package transport;
 
 public class Car extends Transport implements Competing {
+
+    private BodyType type;
+
+
     public Car(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
+
     }
 
     @Override
@@ -14,6 +19,7 @@ public class Car extends Transport implements Competing {
     public void stop() {
 
     }
+
     @Override
     public void pitStop() {
         System.out.println("Есть пит-строп");
@@ -30,5 +36,14 @@ public class Car extends Transport implements Competing {
     public String maxSpeed() {
         return "290 км/ч";
     }
+
+    public BodyType getType() {
+        return type;
+    }
+
+    public void setType(BodyType type) {
+        this.type = type;
+    }
+
 }
 

@@ -2,8 +2,10 @@ package transport;
 
 public class Truck extends Transport implements Competing {
 
-    public Truck(String brand, String model, double engineVolume) {
+    private Weight weight;
+    public Truck(String brand, String model, double engineVolume, Weight loadCapacity) {
         super(brand, model, engineVolume);
+        this.weight = loadCapacity;
     }
 
     @Override
@@ -30,5 +32,9 @@ public class Truck extends Transport implements Competing {
     @Override
     public String maxSpeed() {
         return "210 км/ч";
+    }
+
+    public Weight getWeight() {
+        return weight;
     }
 }

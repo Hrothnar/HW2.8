@@ -1,8 +1,10 @@
 package transport;
 
 public class Bus extends Transport implements Competing {
-    public Bus(String brand, String model, double engineVolume) {
+    private Capacity capacity;
+    public Bus(String brand, String model, double engineVolume, Capacity capacity) {
         super(brand, model, engineVolume);
+        this.capacity = capacity;
     }
 
     @Override
@@ -29,5 +31,9 @@ public class Bus extends Transport implements Competing {
     @Override
     public String maxSpeed() {
         return "224 км/ч";
+    }
+
+    public Capacity getCapacity() {
+        return capacity;
     }
 }

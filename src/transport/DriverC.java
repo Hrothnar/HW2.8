@@ -6,8 +6,5 @@ public class DriverC<T extends Truck & Competing> extends Driver<T> {
         super(name, drivingLicense, standing);
     }
 
-    @Override
-    public void drive(T transport) {
-        super.drive(transport);
-    }
+
 }

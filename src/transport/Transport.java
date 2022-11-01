@@ -6,6 +6,7 @@ public abstract class Transport {
     private String model;
     private double engineVolume;
 
+
     {
         this.brand = "default";
         this.model = "default";
@@ -48,6 +49,7 @@ public abstract class Transport {
     public abstract void move();
 
     public abstract void stop();
+
 
 }
 

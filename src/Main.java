@@ -7,28 +7,39 @@ public class Main {
         Transport car2 = new Car("Peugeot", "308", 1.5);
         Transport car3 = new Car("Ford", "Mustang", 2.8);
         Transport car4 = new Car("Honda", "Civic", 2.2);
-        Transport truck1 = new Truck("Mercedes-Benz", "Actors", 12.8);
-        Transport truck2 = new Truck("Volvo", "FH 16 ZS", 12);
-        Transport truck3 = new Truck("Камаз", "4326", 18.472);
-        Transport truck4 = new Truck("Freightliner", "Century", 12.7);
-        Transport bus1 = new Bus("Ford", "Transit", 2.8);
-        Transport bus2 = new Bus("Peugeot", "Boxer", 3.3);
-        Transport bus3 = new Bus("Volkswagen", "Vento", 2.7);
-        Transport bus4 = new Bus("Лада", "Газель", 3.7);
-        ((Car) car1).pitStop();
-        ((Truck) truck1).bestLapTime();
-        System.out.println(((Bus) bus1).maxSpeed());
+        Transport truck1 = new Truck("Mercedes-Benz", "Actors", 12.8, Weight.N2);
+        Transport truck2 = new Truck("Volvo", "FH 16 ZS", 12, Weight.N1);
+        Transport truck3 = new Truck("Камаз", "4326", 18.472, Weight.N3);
+        Transport truck4 = new Truck("Freightliner", "Century", 12.7, Weight.N1);
+        Transport bus1 = new Bus("Ford", "Transit", 2.8, Capacity.SMALL);
+        Transport bus2 = new Bus("Peugeot", "Boxer", 3.3, Capacity.SMALL);
+        Transport bus3 = new Bus("Volkswagen", "Vento", 2.7, Capacity.MIDDLE);
+        Transport bus4 = new Bus("Лада", "Газель", 3.7, Capacity.SMALL);
+//        ((Car) car1).pitStop();
+//        ((Truck) truck1).bestLapTime();
+//        System.out.println(((Bus) bus1).maxSpeed());
 
         DriverB<Car> driver1 = new DriverB<>("Игорь", true, 4.5);
         DriverC<Truck> driver2 = new DriverC<>("Вова", true, 1.6);
         DriverD<Bus> driver3 = new DriverD<>("Саша", true, 3.3);
-        driver1.refill();
-        driver2.move();
-        driver3.stop();
-        driver1.drive((Car) car1);
-        driver2.drive((Truck) truck1);
-        driver3.drive((Bus) bus1);
+//        driver1.refill();
+//        driver2.move();
+//        driver3.stop();
+//        driver1.drive((Car) car1);
+//        driver2.drive((Truck) truck1);
+//        driver3.drive((Bus) bus1);
 
+        BodyType.checkType(((Car) car1).getType());
+        Weight.checkType(((Truck) truck1).getWeight());
+        Capacity.checkType(((Bus) bus1).getCapacity());
+
+        ((Car) car1).setType(BodyType.COUPE);
+        ((Car) car1).getType().setBodyType("Купе");
+        BodyType.checkType(((Car) car1).getType());
+
+
+//        System.out.println(((Truck) truck1).getLoadCapacity().getCapacity());
+//        System.out.println(((Bus) bus1).getCapacity().getCapacity());
 
 //        Transport car1 = new Car("Lada", "Granta", 2004, "Россия", "Жёлтый", 150, 0, "Седан", "о545ла22", 4, "Зима");
 //        Transport train1 = new Train("Ласточка", "В-901", 2011, "Россия", null, 301, 3500, 0, "Белорусский вокзал", "Минск-Пассажирский", 11);
