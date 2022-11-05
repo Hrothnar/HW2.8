@@ -1,27 +1,52 @@
+import other.Account;
+import other.WrongLoginException;
+import other.WrongPasswordException;
 import transport.*;
+
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
 
-        Transport car1 = new Car("Audi", "TT", 3.5);
-        Transport car2 = new Car("Peugeot", "308", 1.5);
-        Transport car3 = new Car("Ford", "Mustang", 2.8);
-        Transport car4 = new Car("Honda", "Civic", 2.2);
-        Transport truck1 = new Truck("Mercedes-Benz", "Actors", 12.8, Weight.N2);
-        Transport truck2 = new Truck("Volvo", "FH 16 ZS", 12, Weight.N1);
-        Transport truck3 = new Truck("Камаз", "4326", 18.472, Weight.N3);
-        Transport truck4 = new Truck("Freightliner", "Century", 12.7, Weight.N1);
-        Transport bus1 = new Bus("Ford", "Transit", 2.8, Capacity.SMALL);
-        Transport bus2 = new Bus("Peugeot", "Boxer", 3.3, Capacity.SMALL);
-        Transport bus3 = new Bus("Volkswagen", "Vento", 2.7, Capacity.MIDDLE);
-        Transport bus4 = new Bus("Лада", "Газель", 3.7, Capacity.SMALL);
+        Car car1 = new Car("Audi", "TT", 3.5);
+        Car car2 = new Car("Peugeot", "308", 1.5);
+        Car car3 = new Car("Ford", "Mustang", 2.8);
+        Car car4 = new Car("Honda", "Civic", 2.2);
+        Truck truck1 = new Truck("Mercedes-Benz", "Actors", 12.8, Weight.N2);
+        Truck truck2 = new Truck("Volvo", "FH 16 ZS", 12, Weight.N1);
+        Truck truck3 = new Truck("Камаз", "4326", 18.472, Weight.N3);
+        Truck truck4 = new Truck("Freightliner", "Century", 12.7, Weight.N1);
+        Bus bus1 = new Bus("Ford", "Transit", 2.8, Capacity.SMALL);
+        Bus bus2 = new Bus("Peugeot", "Boxer", 3.3, Capacity.SMALL);
+        Bus bus3 = new Bus("Volkswagen", "Vento", 2.7, Capacity.MIDDLE);
+        Bus bus4 = new Bus("Лада", "Газель", 3.7, Capacity.SMALL);
 //        ((Car) car1).pitStop();
 //        ((Truck) truck1).bestLapTime();
 //        System.out.println(((Bus) bus1).maxSpeed());
 
-        DriverB<Car> driver1 = new DriverB<>("Игорь", true, 4.5);
-        DriverC<Truck> driver2 = new DriverC<>("Вова", true, 1.6);
-        DriverD<Bus> driver3 = new DriverD<>("Саша", true, 3.3);
+        Driver<Car> driver1 = new Driver<>("Игорь", 'b', 4.5);
+        Driver<Truck> driver2 = new Driver<>("Вова", 'C', 1.6);
+        Driver<Bus> driver3 = new Driver<>("Саша", 'D', 3.3);
+        car1.passDiagnostics();
+        car2.passDiagnostics();
+        car3.passDiagnostics();
+        car4.passDiagnostics();
+        truck1.passDiagnostics();
+//        truck2.passDiagnostics();
+        truck3.passDiagnostics();
+        truck4.passDiagnostics();
+        Transport.addToPark(car1, car2, car3, car4, truck1, truck2, truck3, truck4, bus1, bus2, bus3, bus4);
+
+        try {
+            Transport.showStatusOfDiagnostic();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
+        System.out.println(Account.account("5kldal_ewr5g", "tLDdf442db", "tLDdf442db"));
+
+
 //        driver1.refill();
 //        driver2.move();
 //        driver3.stop();
@@ -29,13 +54,13 @@ public class Main {
 //        driver2.drive((Truck) truck1);
 //        driver3.drive((Bus) bus1);
 
-        BodyType.checkType(((Car) car1).getType());
-        Weight.checkType(((Truck) truck1).getWeight());
-        Capacity.checkType(((Bus) bus1).getCapacity());
-
-        ((Car) car1).setType(BodyType.COUPE);
-        ((Car) car1).getType().setBodyType("Купе");
-        BodyType.checkType(((Car) car1).getType());
+//        BodyType.checkType(((Car) car1).getType());
+//        Weight.checkType(((Truck) truck1).getWeight());
+//        Capacity.checkType(((Bus) bus1).getCapacity());
+//
+//        ((Car) car1).setType(BodyType.COUPE);
+//        ((Car) car1).getType().setBodyType("Купе");
+//        BodyType.checkType(((Car) car1).getType());
 
 
 //        System.out.println(((Truck) truck1).getLoadCapacity().getCapacity());

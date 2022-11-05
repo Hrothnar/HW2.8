@@ -1,10 +1,11 @@
 package transport;
 
-public abstract class Driver<T extends Transport> {
+public class Driver<T extends Transport> {
 
     private String name;
-    private boolean drivingLicense;
+    private char drivingLicense;
     private double standing;
+    private static final char[] LICENSES = new char[]{'B', 'b', 'C', 'c', 'D', 'd'};
 
     public final String getName() {
         return name;
@@ -14,12 +15,23 @@ public abstract class Driver<T extends Transport> {
         if (name != null && !name.isBlank()) this.name = name;
     }
 
-    public final boolean isDrivingLicense() {
+    public final char getDrivingLicense() {
         return drivingLicense;
     }
 
-    public void setDrivingLicense(boolean drivingLicense) {
-        this.drivingLicense = drivingLicense;
+    public void setDrivingLicense(char drivingLicense) {
+        try {
+            for (char license : LICENSES) {
+                if (drivingLicense == license) {
+                    this.drivingLicense = drivingLicense;
+                    break;
+                }
+            }
+            if (this.drivingLicense == 0)
+                throw new IllegalArgumentException("Необходимо указать корректный тип прав у водителя " + this.getName());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public final double getStanding() {
@@ -30,7 +42,7 @@ public abstract class Driver<T extends Transport> {
         if (standing > 0) this.standing = standing;
     }
 
-    public Driver(String name, boolean drivingLicense, double standing) {
+    public Driver(String name, char drivingLicense, double standing) {
         setName(name);
         setDrivingLicense(drivingLicense);
         setStanding(standing);

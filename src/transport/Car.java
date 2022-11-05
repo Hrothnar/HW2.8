@@ -3,12 +3,11 @@ package transport;
 public class Car extends Transport implements Competing {
 
     private BodyType type;
-
-
+    private boolean passedTheDiagnostic;
     public Car(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
-
     }
+
 
     @Override
     public void move() {
@@ -45,5 +44,12 @@ public class Car extends Transport implements Competing {
         this.type = type;
     }
 
+    public void passDiagnostics() {
+        this.passedTheDiagnostic = true;
+    }
+
+    public boolean isPassedTheDiagnostic() {
+        return passedTheDiagnostic;
+    }
 }
 

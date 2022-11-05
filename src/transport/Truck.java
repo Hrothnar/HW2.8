@@ -3,6 +3,8 @@ package transport;
 public class Truck extends Transport implements Competing {
 
     private Weight weight;
+    private boolean passedTheDiagnostic;
+
     public Truck(String brand, String model, double engineVolume, Weight loadCapacity) {
         super(brand, model, engineVolume);
         this.weight = loadCapacity;
@@ -17,6 +19,7 @@ public class Truck extends Transport implements Competing {
     public void stop() {
 
     }
+
     @Override
     public void pitStop() {
         System.out.println("Есть пит-строп");
@@ -36,5 +39,13 @@ public class Truck extends Transport implements Competing {
 
     public Weight getWeight() {
         return weight;
+    }
+
+    public void passDiagnostics() {
+        this.passedTheDiagnostic = true;
+    }
+
+    public boolean isPassedTheDiagnostic() {
+        return passedTheDiagnostic;
     }
 }
