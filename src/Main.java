@@ -3,48 +3,135 @@ import other.WrongLoginException;
 import other.WrongPasswordException;
 import transport.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
         Car car1 = new Car("Audi", "TT", 3.5);
         Car car2 = new Car("Peugeot", "308", 1.5);
-        Car car3 = new Car("Ford", "Mustang", 2.8);
-        Car car4 = new Car("Honda", "Civic", 2.2);
+//        Car car3 = new Car("Ford", "Mustang", 2.8);
+//        Car car4 = new Car("Honda", "Civic", 2.2);
         Truck truck1 = new Truck("Mercedes-Benz", "Actors", 12.8, Weight.N2);
         Truck truck2 = new Truck("Volvo", "FH 16 ZS", 12, Weight.N1);
-        Truck truck3 = new Truck("Камаз", "4326", 18.472, Weight.N3);
-        Truck truck4 = new Truck("Freightliner", "Century", 12.7, Weight.N1);
+//        Truck truck3 = new Truck("Камаз", "4326", 18.472, Weight.N3);
+//        Truck truck4 = new Truck("Freightliner", "Century", 12.7, Weight.N1);
         Bus bus1 = new Bus("Ford", "Transit", 2.8, Capacity.SMALL);
         Bus bus2 = new Bus("Peugeot", "Boxer", 3.3, Capacity.SMALL);
-        Bus bus3 = new Bus("Volkswagen", "Vento", 2.7, Capacity.MIDDLE);
-        Bus bus4 = new Bus("Лада", "Газель", 3.7, Capacity.SMALL);
+//        Bus bus3 = new Bus("Volkswagen", "Vento", 2.7, Capacity.MIDDLE);
+//        Bus bus4 = new Bus("Лада", "Газель", 3.7, Capacity.SMALL);
+
 //        ((Car) car1).pitStop();
 //        ((Truck) truck1).bestLapTime();
 //        System.out.println(((Bus) bus1).maxSpeed());
 
-        Driver<Car> driver1 = new Driver<>("Игорь", 'b', 4.5);
-        Driver<Truck> driver2 = new Driver<>("Вова", 'C', 1.6);
-        Driver<Bus> driver3 = new Driver<>("Саша", 'D', 3.3);
-        car1.passDiagnostics();
-        car2.passDiagnostics();
-        car3.passDiagnostics();
-        car4.passDiagnostics();
-        truck1.passDiagnostics();
+        Driver<Car> driver1 = new Driver<>("Игорь", 'b', 4.5, car1);
+        Driver<Truck> driver2 = new Driver<>("Вова", 'C', 1.6, truck1);
+        Driver<Bus> driver3 = new Driver<>("Саша", 'D', 3.3, bus1);
+        Driver<Car> driver4 = new Driver<>("Евгений", 'B', 0.5, car2);
+        Driver<Truck> driver5 = new Driver<>("Вася", 'C', 2.2, truck2);
+        Driver<Bus> driver6 = new Driver<>("Виктор", 'd', 6.3, bus2);
+
+
+        Transport.autoPark.add(car1);
+        Transport.autoPark.add(car2);
+        Transport.autoPark.add(truck1);
+        Transport.autoPark.add(truck2);
+        Transport.autoPark.add(bus1);
+        Transport.autoPark.add(bus2);
+
+
+//        car1.passDiagnostics();
+//        car2.passDiagnostics();
+//        car3.passDiagnostics();
+//        car4.passDiagnostics();
+//        truck1.passDiagnostics();
 //        truck2.passDiagnostics();
-        truck3.passDiagnostics();
-        truck4.passDiagnostics();
-        Transport.addToPark(car1, car2, car3, car4, truck1, truck2, truck3, truck4, bus1, bus2, bus3, bus4);
-
-        try {
-            Transport.showStatusOfDiagnostic();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+//        truck3.passDiagnostics();
+//        truck4.passDiagnostics();
 
 
-        System.out.println(Account.account("5kldal_ewr5g", "tLDdf442db", "tLDdf442db"));
+//        Transport.showStatusOfDiagnostic();
+
+//        System.out.println(Account.account("5kldal_ewr5g", "tLDdf442db", "tLDdf442db")); ВАЖНО!!
+
+        driver1.bindDriver();
+        driver2.bindDriver();
+        driver3.bindDriver();
+        driver4.bindDriver();
+        driver5.bindDriver();
+        driver6.bindDriver();
+
+        Driver.drivers.add(driver1);
+        Driver.drivers.add(driver2);
+        Driver.drivers.add(driver3);
+        Driver.drivers.add(driver4);
+        Driver.drivers.add(driver5);
+        Driver.drivers.add(driver6);
+
+
+        Mechanic<Car> mechanic1 = new Mechanic<>("Иван Леонидович", "Мишлен", car1);
+        Mechanic<Truck> mechanic2 = new Mechanic<>("Пётр Степанович", "Тур де Франц", truck1, truck2);
+        Mechanic<Bus> mechanic3 = new Mechanic<>("Александр Робинзонович", "Гранд Туризмо", bus1);
+        Mechanic<Car> mechanic4 = new Mechanic<>("Максим Филиппович", "West Coast Customs", car1, car2);
+        Sponsor sponsor1 = new Individual("Вася", 23400);
+        Sponsor sponsor2 = new Individual("Зоя", 15500);
+        Sponsor sponsor3 = new Company("IBG", 300000);
+        Sponsor sponsor4 = new Company("NFS", 420000);
+
+
+        car1.getMechanics().add(mechanic1);
+        car1.getMechanics().add(mechanic4);
+        truck1.getMechanics().add(mechanic2);
+        bus1.getSponsors().add(sponsor1);
+        bus1.getSponsors().add(sponsor2);
+
+
+//        mechanic1.doDiagnostic(car1);
+//        Transport.showStatusOfDiagnostic();
+////        car1.getMechanics().get(0).doDiagnostic(bus1);
+//        mechanic1.repairTransport();
+////        car1.getSponsors().add();
+//        System.out.println(car1.getMechanics().size());
+//        Transport.showInfo();
+
+        ServiceStation.addAutoToQueue(car1);
+        ServiceStation.addAutoToQueue(car2);
+        ServiceStation.addAutoToQueue(truck1);
+        ServiceStation.addAutoToQueue(truck2);
+        ServiceStation.addAutoToQueue(bus1);
+        ServiceStation.addAutoToQueue(bus2);
+
+//        ServiceStation.doService(car1);
+//        ServiceStation.doService(bus1);
+
+        Shop.queue1.add("Vasya");
+        Shop.queue1.add("Maks");
+        Shop.queue2.add("Ben");
+        Shop.queue2.add("Olga");
+        Shop.queue2.add("Lena");
+        Shop.queue2.add("Sveta");
+        Shop.queue3.add("Piter");
+        Shop.queue3.add("Vlad");
+        Shop.queue3.add("Vika");
+//
+//        Shop.chooseAQueue("Fedot");
+//        Shop.chooseAQueue("Uliyana");
+//        Shop.chooseAQueue("Ulia");
+//        Shop.chooseAQueue("Boris");
+//        Shop.chooseAQueue("Kirill");
+//        Shop.chooseAQueue("Leonid");
+//        Shop.chooseAQueue("Eugen");
+//
+//        Shop.removeBuyer();
+//        Shop.removeBuyer();
+//        Shop.removeBuyer();
+//        Shop.removeBuyer();
+//        Shop.removeBuyer();
+
+        example();
 
 
 //        driver1.refill();
@@ -162,6 +249,36 @@ public class Main {
 //        bouquet2.addFlower(pion);
 //        bouquet2.addFlower(hrizantema);
 //        bouquet2.bouquetInfo();
+
+    }
+
+    static void example() {
+        List<List<String>> matrix = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            matrix.add(i, new ArrayList<>());
+            for (int j = 0; j < 8; j++) {
+                if (i % 2 == 0) {
+                    if (j % 2 == 0)
+                        matrix.get(i).add(j, "◯");
+                    else
+                        matrix.get(i).add(j, "●");
+                } else {
+                    if (j % 2 != 0)
+                        matrix.get(i).add(j, "◯");
+                    else
+                        matrix.get(i).add(j, "●");
+                    // можно сократить изначально заполнив массив одним типом полей
+                }
+            }
+        }
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (j != 7)
+                    System.out.print(matrix.get(i).get(j) + " ");
+                else
+                    System.out.print(matrix.get(i).get(j) + "\n");
+            }
+        }
     }
 
 }

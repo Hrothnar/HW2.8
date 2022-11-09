@@ -1,10 +1,15 @@
 package transport;
 
-public class Driver<T extends Transport> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Driver<T extends Transport & Competing> {
 
     private String name;
     private char drivingLicense;
     private double standing;
+    private T transport;
+    public static List<Driver> drivers = new ArrayList<>(20);
     private static final char[] LICENSES = new char[]{'B', 'b', 'C', 'c', 'D', 'd'};
 
     public final String getName() {
@@ -41,11 +46,19 @@ public class Driver<T extends Transport> {
     public void setStanding(double standing) {
         if (standing > 0) this.standing = standing;
     }
+    public T getTransport() {
+        return transport;
+    }
 
-    public Driver(String name, char drivingLicense, double standing) {
+    public List<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public Driver(String name, char drivingLicense, double standing, T transport) {
         setName(name);
         setDrivingLicense(drivingLicense);
         setStanding(standing);
+        this.transport = transport;
     }
 
     public void move() {
@@ -66,5 +79,10 @@ public class Driver<T extends Transport> {
         System.out.println("Водитель " + getName() + " управляет автомобилем " + transport.getBrand() + " " + transport.getModel() + " и будет участвовать в заезде");
 
     }
+    public void bindDriver() {
+        this.getTransport().setDriver(this);
+    }
+
+
 
 }

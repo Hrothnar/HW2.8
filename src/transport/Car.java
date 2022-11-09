@@ -1,9 +1,14 @@
 package transport;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Car extends Transport implements Competing {
 
     private BodyType type;
     private boolean passedTheDiagnostic;
+
+
     public Car(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
     }
