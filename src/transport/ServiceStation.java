@@ -2,13 +2,15 @@ package transport;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ServiceStation {
-    private static Deque<Transport> queue = new ArrayDeque<>();
+    private static Set<Transport> queue = new HashSet<>();
 
     public static void addAutoToQueue(Transport transport) {
         if (!(transport instanceof Bus))
-            queue.offer(transport);
+            queue.add(transport);
     }
 
     public static void doService(Transport transport) {

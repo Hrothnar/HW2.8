@@ -1,5 +1,8 @@
 package transport;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Mechanic<T extends Transport> {
 
     private String name;
@@ -36,4 +39,23 @@ public class Mechanic<T extends Transport> {
             System.out.println("Машина " + one.getBrand() + " " + one.getModel() + " отремонтирована");
     }
 
+    @Override
+    public String toString() {
+        return this.name + "  Место работы: " + this.workplace;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mechanic<?> mechanic = (Mechanic<?>) o;
+        return Objects.equals(name, mechanic.name) && Objects.equals(workplace, mechanic.workplace) && Arrays.equals(transport, mechanic.transport);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(name, workplace);
+        result = 31 * result + Arrays.hashCode(transport);
+        return result;
+    }
 }

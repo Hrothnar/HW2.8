@@ -1,8 +1,6 @@
 package transport;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public abstract class Transport {
 
@@ -10,8 +8,8 @@ public abstract class Transport {
     private String model;
     private double engineVolume;
     private Driver driver;
-    private List<Mechanic> mechanics = new ArrayList<>(2);
-    private List<Sponsor> sponsors = new ArrayList<>();
+    private Set<Mechanic> mechanics = new HashSet<>(2);
+    private Set<Sponsor> sponsors = new HashSet<>();
     public static ArrayList<Transport> autoPark = new ArrayList<>(12);
 
     {
@@ -65,11 +63,11 @@ public abstract class Transport {
         this.driver = driver;
     }
 
-    public List<Sponsor> getSponsors() {
+    public Set<Sponsor> getSponsors() {
         return sponsors;
     }
 
-    public List<Mechanic> getMechanics() {
+    public Set<Mechanic> getMechanics() {
         return mechanics;
     }
 
@@ -103,17 +101,15 @@ public abstract class Transport {
         for (int i = 0; i < autoPark.size(); i++) {
             int j = 0, h = 0;
             System.out.printf("Автомобиль: %s %s | Водитель: %s\n", autoPark.get(i).getBrand(), autoPark.get(i).getModel(), autoPark.get(i).getDriver().getName());
-            while (j < autoPark.get(i).mechanics.size()) {
-                System.out.println("Механик: " + autoPark.get(i).mechanics.get(j).getName());
-                j++;
-            }
-            while (h < autoPark.get(i).sponsors.size()) {
-                System.out.println("Спонсор: " + autoPark.get(i).sponsors.get(h).getName());
-                h++;
-            }
+            for (Mechanic one : autoPark.get(i).mechanics)
+                System.out.println("Механик: " + one);
+            for (Sponsor one : autoPark.get(i).sponsors)
+                System.out.println("Спонсор: " + one);
             System.out.println();
         }
     }
+
+
 
 
 }

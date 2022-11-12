@@ -1,11 +1,8 @@
-import other.Account;
-import other.WrongLoginException;
-import other.WrongPasswordException;
+import other.Passport;
+import other.TableNumber;
 import transport.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -87,6 +84,9 @@ public class Main {
         truck1.getMechanics().add(mechanic2);
         bus1.getSponsors().add(sponsor1);
         bus1.getSponsors().add(sponsor2);
+        bus1.getSponsors().add(sponsor2);
+        bus1.getSponsors().add(sponsor2);
+        bus1.getSponsors().add(sponsor2);
 
 
 //        mechanic1.doDiagnostic(car1);
@@ -131,7 +131,23 @@ public class Main {
 //        Shop.removeBuyer();
 //        Shop.removeBuyer();
 
-        example();
+//        matrix();
+//        table();
+//
+//        Passport igor = new Passport("Игорь", "Валиев", null, "13.04.1995", "21444252");
+//        Passport vasya = new Passport("Вася", "Петров", "Захарович", "27.06.1992", "54288244");
+//        Passport elena = new Passport("Елена", "Котлова", "Владимировна", "06.06.1990", "92376335");
+//        Passport irina = new Passport("Ирина", "Карамазова", "Николаевна", "17.08.1996", "77398872");
+//        Passport irinaNew = new Passport("Ирина", "Карамазова", "Николаевна", "17.08.2002", "77388872");
+//
+//        igor.addPassport(igor);
+//        vasya.addPassport(vasya);
+//        vasya.addPassport(vasya);
+//        elena.addPassport(elena);
+//        irina.addPassport(irina);
+//        irina.addPassport(irinaNew);
+//
+//        System.out.println(Passport.getInfo(77398872));
 
 
 //        driver1.refill();
@@ -252,7 +268,7 @@ public class Main {
 
     }
 
-    static void example() {
+    static void matrix() {
         List<List<String>> matrix = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             matrix.add(i, new ArrayList<>());
@@ -281,4 +297,18 @@ public class Main {
         }
     }
 
+
+    public static void table() {
+        Set<TableNumber> examples = new HashSet<>();
+        boolean b = true;
+        while (examples.size() < 15) {
+            int i = (int) (Math.random() * 8) + 2;
+            int j = (int) (Math.random() * 8) + 2;
+            examples.add(new TableNumber(i, j));
+        }
+        for (TableNumber one : examples) {
+            System.out.print(one);
+        }
+    }
 }
+

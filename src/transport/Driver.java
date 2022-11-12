@@ -1,7 +1,9 @@
 package transport;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Driver<T extends Transport & Competing> {
 
@@ -9,7 +11,7 @@ public class Driver<T extends Transport & Competing> {
     private char drivingLicense;
     private double standing;
     private T transport;
-    public static List<Driver> drivers = new ArrayList<>(20);
+    public static Set<Driver> drivers = new HashSet<>(20);
     private static final char[] LICENSES = new char[]{'B', 'b', 'C', 'c', 'D', 'd'};
 
     public final String getName() {
@@ -50,7 +52,7 @@ public class Driver<T extends Transport & Competing> {
         return transport;
     }
 
-    public List<Driver> getDrivers() {
+    public Set<Driver> getDrivers() {
         return drivers;
     }
 

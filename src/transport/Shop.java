@@ -11,8 +11,7 @@ public class Shop {
     public static ArrayDeque<String> queue3 = new ArrayDeque<>(5);
 
     public static void chooseAQueue(String buyer) {
-        Queue<String> i;
-        i = queue1.size() < queue2.size() ? queue1 : queue2;
+        Queue<String> i = queue1.size() < queue2.size() ? queue1 : queue2;
         i = i.size() > queue3.size() ? queue3 : i;
         if (i.size() != 5) {
             i.offer(buyer);
